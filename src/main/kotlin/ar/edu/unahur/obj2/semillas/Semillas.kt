@@ -18,23 +18,21 @@ abstract class Soja(altura: Double, anioSemilla: Int): Planta(altura, anioSemill
     }
 }
 
-abstract class Quinoa(altura: Double, anioSemilla: Int): Planta(altura, anioSemilla) {
-    override fun espacio(): Double {
-        TODO("Lee un poco más el enunciado...")
-    }
-
-    override fun daSemillas(): Boolean {
-        TODO("Dalee")
-    }
-
-    override fun esFuerte(): Boolean {
-        TODO("Así me implementas mejor")
+abstract class Quinoa(altura: Double, anioSemilla: Int, val espacioDeLaQuinoa: Double): Planta(altura, anioSemilla) {
+    override fun espacio(): Double { return espacioDeLaQuinoa }
+    override fun daSemillas(): Boolean { return super.daSemillas() || anioSemilla in 2001..2008 }
+    override fun horasDeSolQueTolera(): Int {
+        if(espacioDeLaQuinoa < 0.3) {
+            return 10
+        } else {
+            return super.horasDeSolQueTolera()
+        }
     }
 }
 
 abstract class Planta(var altura: Double, val anioSemilla: Int) {
-    abstract fun espacio(): Double
+    open fun espacio(): Double = 0.0
     open fun esFuerte() = this.horasDeSolQueTolera() > 9
-    abstract fun horasDeSolQueTolera(): Int
+    open fun horasDeSolQueTolera(): Int = 7
     open fun daSemillas() = this.esFuerte()
 }
