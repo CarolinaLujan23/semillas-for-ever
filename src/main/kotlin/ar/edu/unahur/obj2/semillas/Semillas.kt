@@ -30,6 +30,17 @@ abstract class Quinoa(altura: Double, anioSemilla: Int, val espacioDeLaQuinoa: D
     }
 }
 
+
+//2-Variedades.
+abstract class SojaTransgenica(altura: Double, anioSemilla: Int): Soja(altura, anioSemilla) {
+    override fun daSemillas(): Boolean { return false }
+}
+
+abstract class Peperina(altura: Double, anioSemilla: Int): Menta(altura, anioSemilla) {
+    override fun espacio(): Double { return espacio() * 2 }
+}
+//2-Fin variedades.
+
 abstract class Planta(var altura: Double, val anioSemilla: Int) {
     open fun espacio(): Double = 0.0
     open fun esFuerte() = this.horasDeSolQueTolera() > 9
