@@ -1,6 +1,6 @@
 package ar.edu.unahur.obj2.semillas
 
-class Parcelas(val ancho: Double, val largo: Double, val horasDeSol: Int) {
+ open class Parcelas(val ancho: Double, val largo: Double, val horasDeSol: Int) {
     var plantas = mutableListOf<Planta>()
 
     fun superficie(): Double { return largo * ancho }
@@ -19,5 +19,12 @@ class Parcelas(val ancho: Double, val largo: Double, val horasDeSol: Int) {
         } else {
             plantas.add(planta) }
         }
-    }
+     //abstract fun seAsociaBien(planta: Planta): Boolean
+}
+
+class ParcelasEcologicas(ancho: Double, largo: Double, horasDeSol: Int): Parcelas(ancho, largo, horasDeSol) { //¿Por qué el ! en rojo?
+    //override fun seAsociaBien(planta: Planta): Boolean { return !this.tieneComplicaciones() && planta.laParcelaEsIdeal(this) }
+}
+
+//Falta parcelas insutriales
 
