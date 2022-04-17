@@ -26,5 +26,7 @@ class ParcelasEcologicas(ancho: Double, largo: Double, horasDeSol: Int): Parcela
     //override fun seAsociaBien(planta: Planta): Boolean { return !this.tieneComplicaciones() && planta.laParcelaEsIdeal(this) }
 }
 
-//Falta parcelas insutriales
+class ParcelasIndustriales(ancho : Double, largo: Double, horasDeSol: Int): Parcelas(ancho, largo, horasDeSol) {
+    //override fun seAsociaBien(planta: Planta): Boolean { return (this.cantidadMaximaDePlantas().size <= 2 && planta.esFuerte()) }
+}
 

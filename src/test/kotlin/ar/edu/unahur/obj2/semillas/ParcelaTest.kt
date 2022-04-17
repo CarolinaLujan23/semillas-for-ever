@@ -9,6 +9,7 @@ class ParcelasTest : DescribeSpec ({
     describe("Parcela y plantas de soja") {
         val Parcela = Parcelas(20.0, 1.0, 10)
         val ParcelaEco = Parcelas(20.0, 1.0, 10)
+        val ParcelaIndu = Parcelas(20.0, 1.0, 10)
         val Soja1 = Soja(2.1,2020)
         val Soja2 = Soja(2.1,2020)
         val Soja3 = Soja(2.1,2020)
@@ -40,21 +41,25 @@ class ParcelasTest : DescribeSpec ({
         it("La parcela es ideal para menta") {
             Menta.laParcelaEsIdeal(Parcela).shouldBeTrue()
             Menta.laParcelaEsIdeal(ParcelaEco).shouldBeTrue()
+            //Menta.laParcelaEsIdeal(ParcelaIndu).shouldBeTrue()
         }
 
         it("La parcela es ideal para soja") {
             Soja1.laParcelaEsIdeal(Parcela).shouldBeFalse()
             Soja1.laParcelaEsIdeal(ParcelaEco).shouldBeFalse()
+            //Soja1.laParcelaEsIdeal(ParcelaIndu).shouldBeTrue()
         }
 
         it("La parcela es ideal para soja trans") {
             SojaTrans.laParcelaEsIdeal(Parcela).shouldBeFalse()
             SojaTrans.laParcelaEsIdeal(ParcelaEco).shouldBeFalse()
+            //SojaTrans.laParcelaEsIdeal(ParcelaIndu).shouldBeTrue()
         }
 
         it("La parcela es ideal para quinoa") {
             Quinoa.laParcelaEsIdeal(Parcela).shouldBeFalse()
             Quinoa.laParcelaEsIdeal(ParcelaEco).shouldBeFalse()
+            //Quinoa.laParcelaEsIdeal(ParcelaIndu).shouldBeTrue()
         }
     }
 })
