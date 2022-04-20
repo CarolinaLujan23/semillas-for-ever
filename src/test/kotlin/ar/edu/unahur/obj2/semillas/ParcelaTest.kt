@@ -4,6 +4,7 @@ import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.booleans.shouldBeFalse
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.kotest.matchers.shouldBe
+import io.kotest.matchers.shouldNotBe
 
 class ParcelasTest : DescribeSpec ({
     describe("Parcela y plantas de soja") {
@@ -21,6 +22,8 @@ class ParcelasTest : DescribeSpec ({
         val ParcelaEco = ParcelasEcologicas(20.0, 1.0, 10, mutableListOf(Soja1, Soja2, Soja3))
         val ParcelaIndu = ParcelasIndustriales(20.0, 1.0, 10, mutableListOf(Soja1, Menta, SojaTrans))
 
+        Inta.parcelas.add(ParcelaEco)
+        Inta.parcelas.add(ParcelaIndu)
 
         Parcela.plantarUnaPlanta(Soja1)
         Parcela.plantarUnaPlanta(Soja2)
@@ -67,6 +70,14 @@ class ParcelasTest : DescribeSpec ({
             Quinoa.laParcelaEsIdeal(Parcela).shouldBeFalse()
             Quinoa.laParcelaEsIdeal(ParcelaEco).shouldBeFalse()
             Quinoa.laParcelaEsIdeal(ParcelaIndu).shouldBeFalse()
+        }
+
+        it("Promedio de plantas por parcela") {
+            Inta.promedioPlantasPorParcela().shouldBe(4)
+        }
+
+        it("Parcela más sustentable") {
+            //Inta.parcelaMasSustenable().shouldBe(ParcelaIndu)
         }
     }
 })

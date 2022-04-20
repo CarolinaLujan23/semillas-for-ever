@@ -19,13 +19,21 @@ package ar.edu.unahur.obj2.semillas
         } else {
             plantas.add(planta) }
         }
-}
+
+     open fun seAsociaBien(unaPlanta: Planta) = false
+
+     fun porcentajeDePlantasBienAsociadas() : Int {
+         return plantas.count { p -> this.seAsociaBien(p) } / plantas.size
+     }
+
+ }
+
 
 class ParcelasEcologicas(ancho: Double, largo: Double, horasDeSol: Int, planta: MutableList<Planta>): Parcelas(ancho, largo, horasDeSol) { //¿Por qué el ! en rojo?
-    fun seAsociaBien(planta: Planta) { !this.tieneComplicaciones() && planta.laParcelaEsIdeal(this) }
+    override fun seAsociaBien(planta: Planta): Boolean { return !this.tieneComplicaciones() && planta.laParcelaEsIdeal(this) }
 }
 
 class ParcelasIndustriales(ancho : Double, largo: Double, horasDeSol: Int, planta: MutableList<Planta>): Parcelas(ancho, largo, horasDeSol) {
-    fun seAsociaBien(planta: Planta) { this.cantidadMaximaDePlantas() <= 2 && planta.esFuerte() }
+    override fun seAsociaBien(planta: Planta): Boolean { return this.cantidadMaximaDePlantas() <= 2 && planta.esFuerte() }
 }
 
