@@ -11,7 +11,7 @@ package ar.edu.unahur.obj2.semillas
             return (this.superficie() / 3) * largo
         }
     }
-    fun tieneComplicaciones() { plantas.any() { it.horasDeSolQueTolera() < horasDeSol } }//?
+    fun tieneComplicaciones(): Boolean { return plantas.any() { it.horasDeSolQueTolera() < horasDeSol } }//?
     fun cantidadDePlantas(): Double { return plantas.size.toDouble() }
     fun plantarUnaPlanta(planta: Planta) {
         if (this.cantidadDePlantas() == this.cantidadMaximaDePlantas()) {
@@ -19,14 +19,13 @@ package ar.edu.unahur.obj2.semillas
         } else {
             plantas.add(planta) }
         }
-     //abstract fun seAsociaBien(planta: Planta): Boolean
 }
 
-class ParcelasEcologicas(ancho: Double, largo: Double, horasDeSol: Int, planta: Planta): Parcelas(ancho, largo, horasDeSol) { //¿Por qué el ! en rojo?
-    //override fun seAsociaBien(planta: Planta): Boolean { return !this.tieneComplicaciones() && planta.laParcelaEsIdeal(this) }
+class ParcelasEcologicas(ancho: Double, largo: Double, horasDeSol: Int, planta: MutableList<Planta>): Parcelas(ancho, largo, horasDeSol) { //¿Por qué el ! en rojo?
+    fun seAsociaBien(planta: Planta) { !this.tieneComplicaciones() && planta.laParcelaEsIdeal(this) }
 }
 
-class ParcelasIndustriales(ancho : Double, largo: Double, horasDeSol: Int, planta: Planta): Parcelas(ancho, largo, horasDeSol) {
-    //override fun seAsociaBien(planta: Planta): Boolean { return (this.cantidadMaximaDePlantas().size <= 2 && planta.esFuerte()) }
+class ParcelasIndustriales(ancho : Double, largo: Double, horasDeSol: Int, planta: MutableList<Planta>): Parcelas(ancho, largo, horasDeSol) {
+    fun seAsociaBien(planta: Planta) { this.cantidadMaximaDePlantas() <= 2 && planta.esFuerte() }
 }
 
